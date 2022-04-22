@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Akshar&display=swap" rel="stylesheet">
+  <title>{% block title %}{% endblock %}</title>
+  <link rel="shortcut icon" href="{{ url_for('static', filename='favicon-16x16.png') }}">
+  {% block html_head %}{% endblock %}
+</head>
+<nav>
+  <ul>
+      <li class="nav"><a href="/">Home</a></li>
+      <li class="nav"><a href="/recipes">Recipes</a></li>
+      <li class="nav"><a href="/add">Add</a></li>
+  </ul>
+</nav>
+<body>
+  <div id="content">
+    {% block content %}{% endblock %}
+  </div>
+
+  <div id="footer">
+    {% block footer %}
+    &copy; Copyright 2022 by <a href="https://github.com/ljensen505">Lucas Jensen</a>.
+    {% endblock %}
+  </div>
+</body>

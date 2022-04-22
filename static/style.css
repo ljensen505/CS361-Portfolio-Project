@@ -1,0 +1,62 @@
+body {
+  margin: 0;
+  text-align: left;
+  font-family: 'Akshar', sans-serif;
+  background-color: slategray;
+  color: cornsilk;
+}
+
+a {
+  color: lightblue;
+}
+
+a:visited {
+  color: lightblue;
+}
+
+a:hover {
+  color: lightskyblue;
+}
+
+h1 {
+  margin-left: 10px;
+}
+
+p {
+  margin-left: 10px;
+}
+
+#footer {
+  margin-left: 10px;
+  position: absolute;
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+.nav {
+  float: left;
+}
+
+.nav a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  color: cornsilk;
+}
+
+/* Change the link color to #111 (black) on hover */
+.nav a:hover {
+  background-color: #111;
+}
+
+ul {
+  list-style-type: none;
+}
