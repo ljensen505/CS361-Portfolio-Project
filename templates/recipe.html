@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}Recipes{% endblock %}
+{% block title %}{{content["name"]}}{% endblock %}
 
 {% block html_head %}
 
@@ -7,13 +7,25 @@
 
 {% block content %}
 
-    <h1>Bread Recipes</h1>
-    <ul>
-        {% for recipe in content %}
-        <li>
-            <a href=recipes/{{recipe}}>{{content[recipe]['name']}}</a>
-        </li>
+    <h1>{{content["name"]}} Recipe</h1>
+
+
+    <p>Number of loaves: {{content['quantity']}}</p>
+
+    <table>
+      <tr>
+        <th>Ingredient</th>
+        <th>Grams</th>
+      </tr>
+        {% for item in content['ingredients'] %}
+      <tr>
+        <td>{{ item.title() }}</td>
+        <td>{{ content['ingredients'][item] }}</td>
+      </tr>
         {% endfor %}
-    </ul>
+    </table>
+
+    <input type="button" onclick="location.href='/recipes/{{_id}}/delete'" value=Delete />
+
 
 {% endblock %}

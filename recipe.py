@@ -11,8 +11,17 @@ class RecipeBook:
     Represents a recipe book containing several bread recipes
     """
     def __init__(self):
-        self._count = 0
-        self._recipes = {}
+        self._recipes = self.__build_recipes()
+
+    @staticmethod
+    def __build_recipes():
+        """
+        Builds the recipe book from an existing json file
+        """
+        with open("recipes/recipes.json", "rt") as f:
+            recipes = json.load(f)
+
+        return recipes
 
     def add_recipes(self, recipe: object) -> None:
         """
@@ -21,13 +30,13 @@ class RecipeBook:
         :return: nothing
         """
         keys = open_json()
-        for key in keys:
-            if int(key) > self._count:
-                self._count = int(key)
-        self._count += 1
-        self._recipes[self._count] = recipe
-        self.save(self._count, recipe)
-        # self._count += 1
+        count = 0
+
+        while str(count) in keys:
+            count += 1
+
+        self._recipes[count] = recipe
+        self.save(count, recipe)
 
     def get_recipes(self) -> list:
         """
@@ -50,15 +59,21 @@ class RecipeBook:
         :param _id: int
         :return: nothing
         """
-        a_dict = {str(_id): recipe.get_recipe()}
+        self._recipes[_id] = recipe.get_recipe()
 
-        with open('recipes/recipes.json') as f:
-            data = json.load(f)
+        with open("recipes/recipes.json", "wt") as f:
+            json.dump(self._recipes, f, indent=4)
 
-        data.update(a_dict)
+    def delete(self, _id: int) -> None:
+        """
+        Deletes a recipes as found by its ID
+        :param _id: int: id of the recipe
+        :return: nothing
+        """
+        del self._recipes[str(_id)]
 
-        with open('recipes/recipes.json', 'w') as f:
-            json.dump(data, f)
+        with open("recipes/recipes.json", "wt") as f:
+            json.dump(self._recipes, f, indent=4)
 
 
 class Recipe:
@@ -87,11 +102,12 @@ class Recipe:
         """
         recipe_dict = {
             'quantity': self._num_loaves,
-            'name': self._name
+            'name': self._name,
+            'ingredients': {}
         }
 
         for ingredient in self._ingredients:
-            recipe_dict[ingredient] = self._ingredients[ingredient]
+            recipe_dict['ingredients'][ingredient] = self._ingredients[ingredient]
 
         return recipe_dict
 
@@ -139,16 +155,6 @@ class Recipe:
         return scaled_recipe
 
 
-def build_recipe(infile) -> None:
-    """
-    Builds a recipe object from a JSON file
-    :param infile: filename
-    :return: nothing
-    """
-    # TODO
-    pass
-
-
 def default_recipes():
     recipe_1 = Recipe('Country Brown', 1, 600, 300, 13)
     recipe_2 = Recipe('Conventional White', 2, 1000, 700, 25)
@@ -159,8 +165,8 @@ def default_recipes():
 
 def open_json():
     """TODO"""
-    with open('recipes/recipes.json') as json_file:
-        data = json.load(json_file)
+    with open('recipes/recipes.json') as f:
+        data = json.load(f)
 
     return data
 
@@ -171,9 +177,9 @@ if __name__ == "__main__":
     for recipe in recipes:
         book.add_recipes(recipe)
 
-    for recipe in book.get_recipes():
-        print(book.get_recipes()[recipe])
-
-    rec = Recipe('sandwich loaf', 2, 1000, 700, 25)
-    rec.add_ingredient('ww flour', 500)
+    # for recipe in book.get_recipes():
+    #     print(book.get_recipes()[recipe])
+    #
+    # rec = Recipe('sandwich loaf', 2, 1000, 700, 25)
+    # rec.add_ingredient('ww flour', 500)
     # rec.save('recipes.json')

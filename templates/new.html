@@ -11,18 +11,18 @@
 
 <form action="{{ url_for("add_recipe")}}" method="post">
 
-<label for="name">Recipe Name:</label>
+<label for="name">Recipe Name:</label><br>
 <input required type="text" id="name" name="name" placeholder="Sourdough">
 <br>
 <p>Enter all values grams.</p>
 
 {% for ing in ['flour', 'water', 'salt'] %}
-<label for="{{ing}}_weight">{{ing.title()}}:</label>
-<input required type="number" id="{{ing}}_weight" name="{{ing}}_weight" placeholder="100">
+<label for="{{ing}}_weight">{{ing.title()}}:</label><br>
+<input required type="number" id="{{ing}}_weight" name="{{ing}}_weight" placeholder="100"><br>
 <br>
 {% endfor %}
 
-<label for="yield">Loaves:</label>
+<label for="yield">Loaves:</label><br>
 <input required type="number" id="yield" name="yield" placeholder="2">
 
 <button type="submit">Add!</button>

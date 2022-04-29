@@ -3,8 +3,7 @@ Portfolio Project for CS361 Spring 2022
 Written by Lucas Jensen
 Last updated 3/29/22 for Assignment 1
 """
-import json
-from flask import Flask, redirect, flash, render_template, request, jsonify
+from flask import Flask, redirect, render_template, request
 from markupsafe import escape
 
 from recipe import Recipe, RecipeBook, open_json
@@ -19,16 +18,25 @@ def home():
 
 @app.route('/recipes', methods=['GET'])
 def ReturnJSON():
-    return render_template("recipe.html", content=open_json())
+    recipes = open_json()
+    if recipes == {}:
+        return render_template("empty.html")
+    return render_template("recipes.html", content=recipes)
 
 
 @app.route('/recipes/<_id>', methods=['GET'])
 def recipe_page(_id):
     if request.method == 'GET':
-        # recipe = book.find_by_id(int(_id))
-        # return jsonify(recipe.get_recipe())
-        recipe = open_json()[_id]
-        return recipe
+        recipe = book.find_by_id(_id)
+
+        return render_template("recipe.html", content=recipe, _id=_id)
+
+
+@app.route('/recipes/<_id>/delete')
+def delete_recipe(_id):
+    book.delete(_id)
+
+    return redirect("/recipes")
 
 
 @app.route('/add', methods=['GET', 'POST'])
@@ -43,16 +51,10 @@ def add_recipe():
         new_recipe = Recipe(name, loaves, flour, water, salt)
         book.add_recipes(new_recipe)
 
-        # flash("Recipe Added!")
         return redirect("/recipes")
     return render_template("new.html")
 
 
 if __name__ == "__main__":
-    # testing
-    # recipes = default_recipes()
     book = RecipeBook()
-    # for recipe in recipes:
-    #     book.add_recipes(recipe)
-
     app.run(debug=True)
