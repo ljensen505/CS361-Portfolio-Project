@@ -58,4 +58,4 @@ def add_recipe():
 
 if __name__ == "__main__":
     book = RecipeBook()
-    app.run(debug=False)
+    app.run(debug=True)

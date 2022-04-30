@@ -22,5 +22,44 @@
             "Yeast": 0,
             "Starter": 125
         }
+    },
+    "0": {
+        "quantity": "4",
+        "name": "Whole Wheat",
+        "ingredients": {
+            "AP Flour": 500,
+            "WW Flour": 500,
+            "Rye Flour": 0,
+            "Water": 800,
+            "Salt": 23,
+            "Yeast": 15,
+            "Starter": 0
+        }
+    },
+    "1": {
+        "quantity": "2",
+        "name": "Whole Wheat * 0.5",
+        "ingredients": {
+            "AP Flour": 250,
+            "WW Flour": 250,
+            "Rye Flour": 0,
+            "Water": 400,
+            "Salt": 12,
+            "Yeast": 8,
+            "Starter": 0
+        }
+    },
+    "2": {
+        "quantity": "1",
+        "name": "Sandwich",
+        "ingredients": {
+            "AP Flour": 400,
+            "WW Flour": 0,
+            "Rye Flour": 100,
+            "Water": 300,
+            "Salt": 15,
+            "Yeast": 0,
+            "Starter": 12
+        }
     }
 }
