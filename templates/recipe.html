@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}{{content["name"]}}{% endblock %}
+{% block title %}{{content.get_name()}}{% endblock %}
 
 {% block html_head %}
 
@@ -7,23 +7,30 @@
 
 {% block content %}
 
-    <h1>{{content["name"]}} Recipe</h1>
+    <h1>{{ content.get_name() }} Recipe</h1>
 
 
-    <p>Number of loaves: {{content['quantity']}}</p>
+    <p>Number of loaves: {{ content.get_num_loaves() }}</p>
 
     <table>
       <tr>
         <th>Ingredient</th>
         <th>Grams</th>
       </tr>
-        {% for item in content['ingredients'] %}
+        {% for item in content.get_ingredients() %}
       <tr>
-        <td>{{ item.title() }}</td>
-        <td>{{ content['ingredients'][item] }}</td>
+        <td>{{ item }}</td>
+        <td>{{ content.get_ingredients()[item] }}</td>
       </tr>
         {% endfor %}
     </table>
+
+    <h2>Scaling</h2>
+    <form method="post">
+      <label for="scale_btn">How many loaves do you want: </label>
+      <input required name="scale" id="scale_btn" type="number">
+      <button type="submit">Go!</button>
+  </form>
 
     <input type="button" onclick="location.href='/recipes/{{_id}}/delete'" value=Delete />
 

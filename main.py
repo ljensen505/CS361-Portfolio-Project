@@ -4,9 +4,7 @@ Written by Lucas Jensen
 Last updated 3/29/22 for Assignment 1
 """
 from flask import Flask, redirect, render_template, request
-from markupsafe import escape
-
-from recipe import Recipe, RecipeBook, open_json
+from recipe import Recipe, RecipeBook
 
 app = Flask(__name__)
 
@@ -17,39 +15,42 @@ def home():
 
 
 @app.route('/recipes', methods=['GET'])
-def ReturnJSON():
-    recipes = open_json()
+def recipes_page():
+    recipes = book.get_recipes()
+    # recipes is a dictionary of recipe objects
     if recipes == {}:
         return render_template("empty.html")
     return render_template("recipes.html", content=recipes)
 
 
-@app.route('/recipes/<_id>', methods=['GET'])
+@app.route('/recipes/<_id>', methods=['GET', 'POST'])
 def recipe_page(_id):
-    if request.method == 'GET':
-        recipe = book.find_by_id(_id)
+    recipe = book.find_by_id(_id)
 
-        return render_template("recipe.html", content=recipe, _id=_id)
+    if request.method == 'POST':
+        scale = request.form.get('scale')
+        new = recipe.scale(scale)
+        new_id = book.add_recipe(new)
+        return redirect(f'/recipes/{new_id}')
+
+    return render_template("recipe.html", content=recipe, _id=_id)
 
 
 @app.route('/recipes/<_id>/delete')
 def delete_recipe(_id):
-    book.delete(_id)
-
+    book.find_and_delete(_id)
     return redirect("/recipes")
 
 
 @app.route('/add', methods=['GET', 'POST'])
 def add_recipe():
     if request.method == "POST":
-        flour = request.form.get("flour_weight")
-        water = request.form.get("water_weight")
-        salt = request.form.get("salt_weight")
-        loaves = request.form.get("yield")
-        name = request.form.get("name")
+        new_recipe = Recipe(request.form.get('name'), request.form.get('yield'))
+        for item in request.form:
+            if item not in ['name', 'yield']:
+                new_recipe.add_ingredient(item, int(request.form.get(item)))
 
-        new_recipe = Recipe(name, loaves, flour, water, salt)
-        book.add_recipes(new_recipe)
+        book.add_recipe(new_recipe)
 
         return redirect("/recipes")
     return render_template("new.html")
@@ -57,4 +58,4 @@ def add_recipe():
 
 if __name__ == "__main__":
     book = RecipeBook()
-    app.run(debug=True)
+    app.run(debug=False)
