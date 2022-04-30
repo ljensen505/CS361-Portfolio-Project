@@ -7,7 +7,7 @@ from flask import Flask, redirect, render_template, request
 from recipe import Recipe, RecipeBook
 
 app = Flask(__name__)
-
+book = RecipeBook()
 
 @app.route("/")
 def home():
@@ -57,5 +57,4 @@ def add_recipe():
 
 
 if __name__ == "__main__":
-    book = RecipeBook()
-    app.run(debug=True)
+    app.run(debug=False)
