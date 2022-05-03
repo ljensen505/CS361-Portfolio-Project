@@ -1,1 +1,15 @@
-{}
+{
+    "0": {
+        "quantity": "2",
+        "name": "Sourdough",
+        "ingredients": {
+            "AP Flour": 500,
+            "WW Flour": 500,
+            "Rye Flour": 0,
+            "Water": 0,
+            "Salt": 0,
+            "Yeast": 0,
+            "Starter": 0
+        }
+    }
+}
