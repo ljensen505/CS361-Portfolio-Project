@@ -1,26 +1,15 @@
 {
-    "3": {
+    "0": {
         "quantity": "2",
         "name": "Sourdough",
         "ingredients": {
-            "AP Flour": 800,
-            "WW Flour": 200,
-            "Water": 700,
-            "Salt": 20,
-            "Yeast": 0,
-            "Starter": 50
-        }
-    },
-    "7": {
-        "quantity": "5",
-        "name": "Sourdough * 2.5",
-        "ingredients": {
-            "AP Flour": 2000,
+            "AP Flour": 500,
             "WW Flour": 500,
-            "Water": 1750,
-            "Salt": 50,
+            "Rye Flour": 0,
+            "Water": 0,
+            "Salt": 0,
             "Yeast": 0,
-            "Starter": 125
+            "Starter": 0
         }
     }
 }
