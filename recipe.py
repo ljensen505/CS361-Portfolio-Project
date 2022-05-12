@@ -8,7 +8,7 @@ Last updated 5/12
 import json
 from pprint import pprint
 
-JSON_FILE = "recipes/recipes.json"
+JSON_FILE = "recipes.json"
 
 
 class RecipeBook:
