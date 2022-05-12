@@ -1,7 +1,7 @@
 """
 Portfolio Project for CS361 Spring 2022
 Written by Lucas Jensen
-Last updated 3/29/22 for Assignment 1
+Last updated 5/12 for Assignment 1
 """
 from flask import Flask, redirect, render_template, request
 from recipe import Recipe, RecipeBook
