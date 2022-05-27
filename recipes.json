@@ -12,12 +12,25 @@
             "Starter": 0
         }
     },
-    "1": {
-        "quantity": "2",
-        "name": "Sourdough * 1.0",
+    "2": {
+        "quantity": "1",
+        "name": "Sandwich Loaf",
         "ingredients": {
             "AP Flour": 500,
-            "WW Flour": 500,
+            "WW Flour": 0,
+            "Rye Flour": 0,
+            "Water": 250,
+            "Salt": 20,
+            "Yeast": 10,
+            "Starter": 0
+        }
+    },
+    "1": {
+        "quantity": "1",
+        "name": "tobi",
+        "ingredients": {
+            "AP Flour": 100,
+            "WW Flour": 0,
             "Rye Flour": 0,
             "Water": 0,
             "Salt": 0,

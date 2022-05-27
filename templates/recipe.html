@@ -9,7 +9,6 @@
 
     <h1>{{ content.get_name() }} Recipe</h1>
 
-
     <p>Number of loaves: {{ content.get_num_loaves() }}</p>
 
     <table>
@@ -32,10 +31,27 @@
       <button type="submit">Go!</button>
   </form>
 
-    <input type="button" onclick="location.href='/recipes/{{_id}}/delete'" value=Delete />
-<form method="post">
+<form name="photo upload" id="photo upload" method="post" enctype="multipart/form-data">
+    <label for="photo">Upload a Photo: </label>
+    <input id="photo" type="file" name="photo">
+    <input type="submit">
+</form>
+
+<input type="button" onclick="location.href='/recipes/{{_id}}/delete'" value=Delete />
+
+<form name="download" id="download" method="post">
     <button type="submit">Download</button>
 </form>
+
+<a href="/recipes/{{_id}}/email">Email me!</a>
+
+<div>
+<!--<p>Photos: {{photos}}</p>-->
+{% for photo in photos %}
+<!--    <p>{{photo}}</p>-->
+<img src="{{ url_for('static', filename=photo) }}" width="250" alt="bread photo">
+{% endfor %}
+</div>
 
 
 {% endblock %}

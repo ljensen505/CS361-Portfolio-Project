@@ -1,0 +1,3 @@
+$to == jenseluc@oregonstate.edu
+$subject == whole wheat loaf
+$message == whole wheat loaf; Num loaves: 1; AP Flour: 100 grams; WW Flour: 400 grams; Rye Flour: 0 grams; Water: 300 grams; Salt: 20 grams; Yeast: 2 grams; Starter: 10 grams;
