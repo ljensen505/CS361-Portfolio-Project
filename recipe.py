@@ -172,6 +172,24 @@ class Recipe:
 
         return scaled_recipe
 
+    def convert(self) -> object:
+        """
+        converts a conventional recipe into a sourdough recipe
+        :return: the newly converted recipe object
+        """
+        new_recipe = Recipe(f"{self._name} SD Conversion", self._num_loaves)
+
+        new_recipe._ingredients = {
+            'AP Flour': self._ingredients['AP Flour'] - 10,
+            'WW Flour': self._ingredients['WW Flour'] - 10,
+            'Rye Flour': self._ingredients['Rye Flour'] - 5,
+            'Water': self._ingredients['Water'] - 25,
+            'Salt': self._ingredients['Salt'],
+            'Yeast': 0,
+            'Starter': 50}
+
+        return new_recipe
+
 
 def default_recipes():
     """Adds some sample data"""
@@ -203,3 +221,5 @@ if __name__ == "__main__":
     book = RecipeBook()
     for recipe in recipes:
         book.add_recipe(recipe)
+
+    recipe = book.find_by_id(1)

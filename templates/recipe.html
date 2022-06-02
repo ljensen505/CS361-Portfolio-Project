@@ -12,16 +12,29 @@
     <p>Number of loaves: {{ content.get_num_loaves() }}</p>
 
     <table>
-      <tr>
-        <th>Ingredient</th>
-        <th>Grams</th>
-      </tr>
-        {% for item in content.get_ingredients() %}
-      <tr>
-        <td>{{ item }}</td>
-        <td>{{ content.get_ingredients()[item] }}</td>
-      </tr>
-        {% endfor %}
+        <tr>
+            <td>
+            <table>
+              <tr>
+                <th>Ingredient</th>
+                <th>Grams</th>
+              </tr>
+                {% for item in content.get_ingredients() %}
+              <tr>
+                <td>{{ item }}</td>
+                <td>{{ content.get_ingredients()[item] }}</td>
+              </tr>
+                {% endfor %}
+            </table>
+            </td>
+            <td>
+                <div style="padding-left: 50px">
+                {% for photo in photos %}
+                    <img src="{{ url_for('static', filename=photo) }}" width="250" alt="bread photo">
+                {% endfor %}
+                </div>
+            </td>
+        </tr>
     </table>
 
     <h2>Scaling</h2>
@@ -31,10 +44,19 @@
       <button type="submit">Go!</button>
   </form>
 
+{% if content._ingredients['Starter'] == 0 %}
+
+<form method="post">
+    <input type="text" hidden name="convert">
+    <button type="submit" value="convert">Convert to SD</button>
+</form>
+
+{% endif %}
+
 <form name="photo upload" id="photo upload" method="post" enctype="multipart/form-data">
     <label for="photo">Upload a Photo: </label>
-    <input id="photo" type="file" name="photo">
-    <input type="submit">
+    <input required id="photo" type="file" name="photo">
+    <button type="submit">Upload</button>
 </form>
 
 <input type="button" onclick="location.href='/recipes/{{_id}}/delete'" value=Delete />
@@ -45,13 +67,7 @@
 
 <a href="/recipes/{{_id}}/email">Email me!</a>
 
-<div>
-<!--<p>Photos: {{photos}}</p>-->
-{% for photo in photos %}
-<!--    <p>{{photo}}</p>-->
-<img src="{{ url_for('static', filename=photo) }}" width="250" alt="bread photo">
-{% endfor %}
-</div>
+
 
 
 {% endblock %}

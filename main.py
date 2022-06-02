@@ -71,7 +71,11 @@ def recipe_page(_id):
             f = request.files['photo']
             f.save(os.path.join('static', f"image_{_id}.jpg"))
             # return "Success"
-
+        elif 'convert' in request.form:
+            # user wants to convert to sourdough
+            new_recipe = recipe.convert()
+            book.add_recipe(new_recipe)
+            return redirect('/recipes')
         else:
             # user wants to download a pdf
             path = write_txt(_id)

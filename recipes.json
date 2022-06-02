@@ -1,17 +1,4 @@
 {
-    "0": {
-        "quantity": "2",
-        "name": "Sourdough",
-        "ingredients": {
-            "AP Flour": 500,
-            "WW Flour": 500,
-            "Rye Flour": 0,
-            "Water": 0,
-            "Salt": 0,
-            "Yeast": 0,
-            "Starter": 0
-        }
-    },
     "2": {
         "quantity": "1",
         "name": "Sandwich Loaf",
@@ -25,16 +12,29 @@
             "Starter": 0
         }
     },
-    "1": {
+    "0": {
         "quantity": "1",
-        "name": "tobi",
+        "name": "Country Brown Loaf",
         "ingredients": {
-            "AP Flour": 100,
-            "WW Flour": 0,
-            "Rye Flour": 0,
-            "Water": 0,
-            "Salt": 0,
-            "Yeast": 0,
+            "AP Flour": 300,
+            "WW Flour": 150,
+            "Rye Flour": 50,
+            "Water": 300,
+            "Salt": 12,
+            "Yeast": 10,
+            "Starter": 0
+        }
+    },
+    "1": {
+        "quantity": "2",
+        "name": "White Bread",
+        "ingredients": {
+            "AP Flour": 800,
+            "WW Flour": 100,
+            "Rye Flour": 100,
+            "Water": 650,
+            "Salt": 25,
+            "Yeast": 15,
             "Starter": 0
         }
     }
