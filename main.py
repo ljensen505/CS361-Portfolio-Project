@@ -5,7 +5,6 @@ Last updated 5/12 for Assignment 1
 """
 from flask import Flask, redirect, render_template, request, send_file
 from recipe import Recipe, RecipeBook
-from werkzeug.utils import secure_filename
 from time import sleep
 import subprocess
 import os
@@ -90,12 +89,16 @@ def recipe_page(_id):
             if get_num(photo) == int(_id):
                 recipe_photos.append(photo)
 
-    return render_template("recipe.html", content=recipe, _id=_id, photos=recipe_photos)
+    return render_template("recipe.html",
+                           content=recipe,
+                           _id=_id,
+                           photos=recipe_photos)
 
 
 def get_num(path: str) -> int:
     """
-    :param path: must be formatted: "image_XXX.jpg" where XXX is the id of the recipe with any number of digits
+    :param path: must be formatted: "image_XXX.jpg" where XXX is the id of the
+    recipe with any number of digits
     :return: integer of the found id number
     """
     num = ""
@@ -140,4 +143,4 @@ def add_recipe():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=False, port=5001)
